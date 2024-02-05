@@ -1,0 +1,36 @@
+(database = donations_task)
+
+CREATE TABLE charities (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR (100) NOT NULL UNIQUE,
+    email VARCHAR (100) NOT NULL UNIQUE
+);
+
+INSERT INTO charities (name, email)
+VALUES
+('charity_01', 'charity1@gmail.com'),
+('charity_02', 'charity2@gmail.com'),
+('charity_03', 'charity3@gmail.com'),
+('charity_04', 'charity4@gmail.com'),
+('charity_05', 'charity5@gmail.com'),
+('charity_06', 'charity6@gmail.com');
+
+
+
+CREATE TABLE donations (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    donor_name VARCHAR (100) NOT NULL,
+    amount DECIMAL (10, 2) NOT NULL,
+    charity_id VARCHAR (100) NOT NULL,
+    date_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (charity_id) REFERENCES charities(name)
+);
+
+INSERT INTO donations (donor_name, amount, charity_id)
+VALUES
+('John', '20000', 'charity_02'),
+('MATH', '500', 'charity_01'),
+('Bill', '75000', 'charity_06'),
+('John', '20000', 'charity_03'),
+('John', '20', 'charity_02'),
+('John', '20000', 'charity_02');
